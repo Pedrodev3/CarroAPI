@@ -1,0 +1,16 @@
+package br.com.fiap.test;
+
+import br.com.fiap.dao.CarroNumSerieDAO;
+import br.com.fiap.to.CarroNumSerieTO;
+
+public class CarroNumSerieTeste {
+
+	public static void main(String[] args) {
+		CarroNumSerieTO cnst = new CarroNumSerieTO();
+		
+		CarroNumSerieDAO cnsd = new CarroNumSerieDAO();
+		
+		System.out.println("RESPOSTA: " + cnsd.searchDAO(0));
+	}
+
+}

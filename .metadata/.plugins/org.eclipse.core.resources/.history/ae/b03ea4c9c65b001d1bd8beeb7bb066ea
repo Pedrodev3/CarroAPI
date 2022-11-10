@@ -1,0 +1,18 @@
+package br.com.fiap.bo;
+
+import java.util.ArrayList;
+
+import br.com.fiap.dao.UsuarioDAO;
+import br.com.fiap.to.UsuarioTO;
+
+public class UsuarioBO {
+	UsuarioDAO ud = null;
+	
+	public ArrayList<UsuarioTO> validacao(UsuarioTO ut) {
+		ud = new UsuarioDAO();
+		return ud.loginDAO(ut);
+	}
+	
+	
+	
+}

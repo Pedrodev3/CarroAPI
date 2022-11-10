@@ -1,0 +1,13 @@
+package br.com.fiap.bo;
+
+import br.com.fiap.dao.UsuarioDAO;
+import br.com.fiap.to.UsuarioTO;
+
+public class UsuarioBO {
+	UsuarioDAO ud = null;
+	
+	public Array validacao(UsuarioTO ut) {
+		ud = new UsuarioDAO();
+		return ud.loginDAO(ut);
+	}
+}

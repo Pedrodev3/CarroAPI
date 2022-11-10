@@ -1,0 +1,18 @@
+package br.com.fiap.bo;
+
+import java.util.ArrayList;
+
+import br.com.fiap.dao.TelefoneDAO;
+import br.com.fiap.dao.UsuarioDAO;
+import br.com.fiap.to.TelefoneTO;
+import br.com.fiap.to.UsuarioTO;
+
+public class TelefoneBO {
+	
+	private TelefoneDAO td;
+	
+	public UsuarioTO validacao(UsuarioTO ut) {
+		ud = new UsuarioDAO();
+		return ud.loginDAO(ut);
+	}
+}

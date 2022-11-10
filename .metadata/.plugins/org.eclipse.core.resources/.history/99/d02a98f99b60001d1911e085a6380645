@@ -1,0 +1,18 @@
+package br.com.fiap.test;
+
+import java.sql.SQLException;
+
+import br.com.fiap.dao.CarroNumSerieDAO;
+import br.com.fiap.to.CarroNumSerieTO;
+
+public class CarroNumSerieTeste {
+
+	public static void main(String[] args) throws SQLException {
+		
+		CarroNumSerieDAO cnsd = new CarroNumSerieDAO();
+		
+		System.out.println("RESPOSTA: " + cnsd.searchDAO(2134).getDsQuilometragem());
+		System.out.println("RESPOSTA: " + cnsd.searchDAO().getDsQuilometragem());
+	}
+
+}

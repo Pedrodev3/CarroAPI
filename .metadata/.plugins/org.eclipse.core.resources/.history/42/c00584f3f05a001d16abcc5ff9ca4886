@@ -1,0 +1,188 @@
+package br.com.fiap.to;
+
+public class InfoCarro {
+	private int idInfoCarro, idCarro, nrPneuIeCalibragem, nrPneuIdCalibragem, nrPneuSeCalibragem,
+	nrPneuSdCalibragem, dsPneuIeVidaUtil, dsPneuIdVidaUtil, dsPneuSeVidaUtil, dsPneuSdVidaUtil,
+	dsSuspensaoFrontalVidaUtil, dsSuspensaoTrasVidaUtil, dsQuilometragem, dsFreioVidaUtil;
+	
+	private String dtUltManutencao;
+	
+
+	public InfoCarro() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public InfoCarro(int idInfoCarro, int idCarro, int nrPneuIeCalibragem, int nrPneuIdCalibragem,
+			int nrPneuSeCalibragem, int nrPneuSdCalibragem, int dsPneuIeVidaUtil, int dsPneuIdVidaUtil,
+			int dsPneuSeVidaUtil, int dsPneuSdVidaUtil, int dsSuspensaoFrontalVidaUtil, int dsSuspensaoTrasVidaUtil,
+			int dsQuilometragem, int dsFreioVidaUtil, String dtUltManutencao) {
+		super();
+		this.idInfoCarro = idInfoCarro;
+		this.idCarro = idCarro;
+		this.nrPneuIeCalibragem = nrPneuIeCalibragem;
+		this.nrPneuIdCalibragem = nrPneuIdCalibragem;
+		this.nrPneuSeCalibragem = nrPneuSeCalibragem;
+		this.nrPneuSdCalibragem = nrPneuSdCalibragem;
+		this.dsPneuIeVidaUtil = dsPneuIeVidaUtil;
+		this.dsPneuIdVidaUtil = dsPneuIdVidaUtil;
+		this.dsPneuSeVidaUtil = dsPneuSeVidaUtil;
+		this.dsPneuSdVidaUtil = dsPneuSdVidaUtil;
+		this.dsSuspensaoFrontalVidaUtil = dsSuspensaoFrontalVidaUtil;
+		this.dsSuspensaoTrasVidaUtil = dsSuspensaoTrasVidaUtil;
+		this.dsQuilometragem = dsQuilometragem;
+		this.dsFreioVidaUtil = dsFreioVidaUtil;
+		this.dtUltManutencao = dtUltManutencao;
+	}
+
+
+	public int getIdInfoCarro() {
+		return idInfoCarro;
+	}
+
+
+	public void setIdInfoCarro(int idInfoCarro) {
+		this.idInfoCarro = idInfoCarro;
+	}
+
+
+	public int getIdCarro() {
+		return idCarro;
+	}
+
+
+	public void setIdCarro(int idCarro) {
+		this.idCarro = idCarro;
+	}
+
+
+	public int getNrPneuIeCalibragem() {
+		return nrPneuIeCalibragem;
+	}
+
+
+	public void setNrPneuIeCalibragem(int nrPneuIeCalibragem) {
+		this.nrPneuIeCalibragem = nrPneuIeCalibragem;
+	}
+
+
+	public int getNrPneuIdCalibragem() {
+		return nrPneuIdCalibragem;
+	}
+
+
+	public void setNrPneuIdCalibragem(int nrPneuIdCalibragem) {
+		this.nrPneuIdCalibragem = nrPneuIdCalibragem;
+	}
+
+
+	public int getNrPneuSeCalibragem() {
+		return nrPneuSeCalibragem;
+	}
+
+
+	public void setNrPneuSeCalibragem(int nrPneuSeCalibragem) {
+		this.nrPneuSeCalibragem = nrPneuSeCalibragem;
+	}
+
+
+	public int getNrPneuSdCalibragem() {
+		return nrPneuSdCalibragem;
+	}
+
+
+	public void setNrPneuSdCalibragem(int nrPneuSdCalibragem) {
+		this.nrPneuSdCalibragem = nrPneuSdCalibragem;
+	}
+
+
+	public int getDsPneuIeVidaUtil() {
+		return dsPneuIeVidaUtil;
+	}
+
+
+	public void setDsPneuIeVidaUtil(int dsPneuIeVidaUtil) {
+		this.dsPneuIeVidaUtil = dsPneuIeVidaUtil;
+	}
+
+
+	public int getDsPneuIdVidaUtil() {
+		return dsPneuIdVidaUtil;
+	}
+
+
+	public void setDsPneuIdVidaUtil(int dsPneuIdVidaUtil) {
+		this.dsPneuIdVidaUtil = dsPneuIdVidaUtil;
+	}
+
+
+	public int getDsPneuSeVidaUtil() {
+		return dsPneuSeVidaUtil;
+	}
+
+
+	public void setDsPneuSeVidaUtil(int dsPneuSeVidaUtil) {
+		this.dsPneuSeVidaUtil = dsPneuSeVidaUtil;
+	}
+
+
+	public int getDsPneuSdVidaUtil() {
+		return dsPneuSdVidaUtil;
+	}
+
+
+	public void setDsPneuSdVidaUtil(int dsPneuSdVidaUtil) {
+		this.dsPneuSdVidaUtil = dsPneuSdVidaUtil;
+	}
+
+
+	public int getDsSuspensaoFrontalVidaUtil() {
+		return dsSuspensaoFrontalVidaUtil;
+	}
+
+
+	public void setDsSuspensaoFrontalVidaUtil(int dsSuspensaoFrontalVidaUtil) {
+		this.dsSuspensaoFrontalVidaUtil = dsSuspensaoFrontalVidaUtil;
+	}
+
+
+	public int getDsSuspensaoTrasVidaUtil() {
+		return dsSuspensaoTrasVidaUtil;
+	}
+
+
+	public void setDsSuspensaoTrasVidaUtil(int dsSuspensaoTrasVidaUtil) {
+		this.dsSuspensaoTrasVidaUtil = dsSuspensaoTrasVidaUtil;
+	}
+
+
+	public int getDsQuilometragem() {
+		return dsQuilometragem;
+	}
+
+
+	public void setDsQuilometragem(int dsQuilometragem) {
+		this.dsQuilometragem = dsQuilometragem;
+	}
+
+
+	public int getDsFreioVidaUtil() {
+		return dsFreioVidaUtil;
+	}
+
+
+	public void setDsFreioVidaUtil(int dsFreioVidaUtil) {
+		this.dsFreioVidaUtil = dsFreioVidaUtil;
+	}
+
+
+	public String getDtUltManutencao() {
+		return dtUltManutencao;
+	}
+
+
+	public void setDtUltManutencao(String dtUltManutencao) {
+		this.dtUltManutencao = dtUltManutencao;
+	}
+
+}

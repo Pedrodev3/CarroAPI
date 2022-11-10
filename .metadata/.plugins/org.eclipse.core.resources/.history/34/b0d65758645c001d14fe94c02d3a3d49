@@ -1,0 +1,24 @@
+package br.com.fiap.to;
+
+public class AdminTO {
+
+	private int idAdmin;
+	private String nmAdmin;
+	private String dsEmail;
+	private String dsSenha;
+	
+	public AdminTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public AdminTO(int idAdmin, String nmAdmin, String dsEmail, String dsSenha) {
+		super();
+		this.idAdmin = idAdmin;
+		this.nmAdmin = nmAdmin;
+		this.dsEmail = dsEmail;
+		this.dsSenha = dsSenha;
+	}
+	
+	
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;API JAVAWEB&apos; to &apos;API_JAVAWEB&apos;" description="Rename resource &apos;API JAVAWEB&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/API JAVAWEB" name="API_JAVAWEB" stamp="1667414112980" updateReferences="true"/>
+</session>

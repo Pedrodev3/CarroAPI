@@ -1,0 +1,141 @@
+package br.com.fiap.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import br.com.fiap.factory.ConnectionFactory;
+import br.com.fiap.to.TelefoneTO;
+import br.com.fiap.to.UsuarioTO;
+
+public class TelefoneDAO implements IDAO {
+	
+	private Connection con = null;
+	
+	public TelefoneDAO() {
+		this.con = new ConnectionFactory().getConnection();
+	}
+	
+	
+	public String insert(Object obj) {
+		TelefoneTO telefone = (TelefoneTO) obj;
+		
+		String sql = "INSERT INTO T_SQ_TELEFONE (ID_TELEFONE, NR_DDD, NR_DDI, NR_TELEFONE, ST_TELEFONE) "
+				+ "VALUES (SQ_GS_TELEFONE.NEXTVAL, ?, ?, ?, ?)";
+
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sql);
+
+			ps.setInt(1, telefone.getNrDdd());
+			ps.setInt(2, telefone.getNrDdi());
+			ps.setInt(3, telefone.getNrTelefone());
+			ps.setString(4, telefone.getStTelefone());
+			if (ps.executeUpdate() > 0) {
+				return "Inserido com sucesso.";
+			} else {
+				return "Erro ao inserir.";
+			}
+
+		} catch (SQLException e) {
+			return e.getMessage();
+		}
+	}
+	
+	
+	public String update(Object obj) {
+		TelefoneTO telefone = (TelefoneTO) obj;
+		
+		String sql = "UPDATE T_GS_TELEFONE SET NR_DDD = ?, NR_DDI = ?, NR_TELEFONE = ?, ST_TELEFONE = ? WHERE ID_TELEFONE = ?";
+		
+		PreparedStatement ps = null;
+		
+		try {
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, telefone.getNrDdd());
+			ps.setInt(2, telefone.getNrDdi());
+			ps.setInt(3, telefone.getNrTelefone());
+			ps.setString(4, telefone.getStTelefone());
+			ps.setInt(5, telefone.getIdTelefone());
+			
+			if (ps.executeUpdate() > 0) {
+				ps.close();
+				con.close();
+				return "Atualizado com sucesso.\n" + "Conexão Fechada!";
+			} else {
+				ps.close();
+				con.close();
+				return "Error ao alterar.\n" + "Conexão Fechada!";
+			}
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
+	
+	
+	public String delete(Integer id) {
+		String sql = "DELETE FROM T_GS_TELEFONE WHERE ID_TELEFONE = ? ";
+
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+
+			if (ps.executeUpdate() > 0) {
+				ps.close();
+				con.close();
+				return "Excluido com sucesso!\n" + "Conexão Fechada!";
+			} else {
+				ps.close();
+				con.close();
+				return "Erro ao excluir!\n" + "Conexão Fechada!";
+			}
+		} catch (SQLException e) {
+			return e.getMessage();
+		}
+	}
+	
+	
+	public ArrayList<TelefoneTO> select(Integer id) {
+		String sql = "SELECT TEL.T_GS_TELEFONE, U.NM_COMPLETO," 
+				+ " U.DS_EMAIL, RG.NR_CPF,"
+				+ " TEL.NR_DDD, TEL.NR_TELEFONE, TEL.ST_TELEFONE"
+				+ " FROM T_CHALL_REGISTRO_GERAL RG INNER JOIN T_CHALL_TELEFONE TEL"
+				+ " ON(RG.ID_REGISTRO_GERAL = TEL.T_CHALL_TELEFONE)" + " WHERE TEL.T_CHALL_TELEFONE = ?";
+
+		ArrayList<TelefoneTO> resul = new ArrayList<TelefoneTO>();
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				TelefoneTO tt = new TelefoneTO();
+				tt.setIdRegistroGeral((rs.getInt(1)));
+				tt.setTipoUsuario(rs.getString(2));
+				tt.setNomeCompleto(rs.getString(3));
+				tt.setEmail(rs.getString(4));
+				tt.setCpf(rs.getString(5));
+				tt.setNrDDD(rs.getInt(6));
+				tt.setNrTelefone(rs.getInt(7));
+				tt.setStTelefone(rs.getString(8));
+				resul.add(tt);
+
+				con.close();
+				return resul;
+			} else {
+				con.close();
+				return null;
+			}
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+}

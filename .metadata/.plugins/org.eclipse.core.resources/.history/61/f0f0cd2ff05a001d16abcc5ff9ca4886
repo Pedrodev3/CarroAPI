@@ -1,0 +1,22 @@
+package br.com.fiap.to;
+
+public class MotorTO {
+	
+	private int idMotor;
+	private int idInfoCarro;
+	private int dsMotorVidaUtil;
+
+	public MotorTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public MotorTO(int idMotor, int idInfoCarro, int dsMotorVidaUtil) {
+		super();
+		this.idMotor = idMotor;
+		this.idInfoCarro = idInfoCarro;
+		this.dsMotorVidaUtil = dsMotorVidaUtil;
+	}
+	
+	
+
+}

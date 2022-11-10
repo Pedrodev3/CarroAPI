@@ -1,0 +1,33 @@
+package br.com.fiap.to;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class InfoCarroTO {
+	private int idInfoCarro, idCarro, nrPneuCalibragem, dsPneuVidaUtil,
+	dsSuspensaoVidaUtil, dsQuilometragem, dsFreioVidaUtil;
+	
+	private String dtUltManutencao;
+	
+	public InfoCarroTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public InfoCarroTO(int idInfoCarro, int idCarro, int nrPneuCalibragem, int dsPneuVidaUtil, int dsSuspensaoVidaUtil,
+			int dsQuilometragem, int dsFreioVidaUtil, String dtUltManutencao) {
+		super();
+		this.idInfoCarro = idInfoCarro;
+		this.idCarro = idCarro;
+		this.nrPneuCalibragem = nrPneuCalibragem;
+		this.dsPneuVidaUtil = dsPneuVidaUtil;
+		this.dsSuspensaoVidaUtil = dsSuspensaoVidaUtil;
+		this.dsQuilometragem = dsQuilometragem;
+		this.dsFreioVidaUtil = dsFreioVidaUtil;
+		this.dtUltManutencao = dtUltManutencao;
+	}
+
+	
+	
+
+}

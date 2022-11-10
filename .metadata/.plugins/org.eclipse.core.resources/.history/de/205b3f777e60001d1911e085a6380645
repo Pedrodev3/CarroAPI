@@ -1,0 +1,95 @@
+package br.com.fiap.resource;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.ws.rs.PathParam; /**/
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
+
+import br.com.fiap.bo.EmpresaBO;
+import br.com.fiap.to.EmpresaTO;
+
+public class EmpresaResource {
+
+	private EmpresaBO eb = new EmpresaBO();
+
+	// Validar / Login / Post (Postman)
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response loginUsuario(EmpresaTO et) throws SQLException {
+
+		return Response.status(200).entity(eb.validacao(et)).build();
+	}
+
+	
+	// Cadastrar / Insert / Post (Postman)
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response cadastrar(EmpresaTO et, @Context UriInfo uriInfo) throws SQLException {
+		// Cadastrando um novo recrutador
+		eb.cadastrar(et);
+
+		// Construindo o PATH
+		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
+
+		// Parseando o código e concatenando com o PATH
+		builder.path(Integer.toString(et.getIdEmpresa()));
+
+		// Retornando o Status Code do HTTP através do Builder
+		return Response.created(builder.build()).build();
+	}
+
+	
+	// Atualizar / Update / Put (Postman)
+	@PUT
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response atualizar(EmpresaTO et, @PathParam("id") int id) throws SQLException {
+
+		// Setar o ID do registro do recrutador
+		et.setIdEmpresa(id);
+
+		// Atualizando o objeto (registro do recrutador)
+		eb.atualizar(et);
+
+		// Retornando o Status 200
+		return Response.ok().build();
+	}
+
+	
+	// Excluir / Delete / Delete (Postman)
+	@DELETE
+	@Path("/{id}")
+	public void excluir(@PathParam("id") int id) throws SQLException {
+		eb.remover(id);
+	}
+
+	
+	// Buscar / Select / GET-BY_ID (Postman)
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<EmpresaTO> buscar(@PathParam("id") int id) throws SQLException {
+		return eb.listar(id);
+	}
+
+	
+	// BuscarTodos / SelectAll / GET-ALL (Postman)
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<EmpresaTO> buscarTodos() {
+		return eb.listarTodos();
+	}
+}

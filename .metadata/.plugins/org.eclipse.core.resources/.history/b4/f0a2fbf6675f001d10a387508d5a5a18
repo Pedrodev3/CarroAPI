@@ -1,0 +1,36 @@
+package br.com.fiap.test;
+
+import br.com.fiap.dao.CarroNumSerieDAO;
+import br.com.fiap.dao.UsuarioDAO;
+import br.com.fiap.to.CarroNumSerieTO;
+import br.com.fiap.to.UsuarioTO;
+
+public class Teste {
+	public static void main(String[] args) {
+		
+		UsuarioTO ut = new UsuarioTO(/* 1, "Pedro Victor", "pedro123", "123abc", "525" */);
+		 ut.setNmCompleto("João Victor");
+		 ut.setDsEmail("joao123");
+		 ut.setDsSenha("1234abc");
+		 ut.setNrCpf("5256");
+		 ut.setIdUsuario(1);
+		
+		UsuarioDAO ud = new UsuarioDAO();
+		
+//		System.out.println("RESPOSTA: " + ud.loginDAO(ut).getDsEmail());
+//		System.out.println("RESPOSTA: " + ud.insert(ut));
+//		System.out.println("RESPOSTA: " + ud.update(ut));
+//		System.out.println("RESPOSTA: " + ud.delete(1));
+//		System.out.println("RESPOSTA: " + ud.selectAll());
+//		System.out.println("RESPOSTA: " + ud.select(1));
+		
+		
+		CarroNumSerieTO ct = new CarroNumSerieTO(2134, '01/02/2004', 
+				'01/02/2003', 'AAA', 'BBB', 'PLACAAS', '01/02/2003', 'Ferrari', 50, 60, 100, 5000, 40 '01/02/2003', 15, 15, 40);
+
+		
+		CarroNumSerieDAO carroNumSerie = new CarroNumSerieDAO();
+		
+		System.out.println("RESPOSTA: " + carroNumSerie.loginDAO(ct).get);
+	}
+}

@@ -1,0 +1,11 @@
+package br.com.fiap.to;
+
+public class CarroTO {
+	
+	
+
+	public CarroTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

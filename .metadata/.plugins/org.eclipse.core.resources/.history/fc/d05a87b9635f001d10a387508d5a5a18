@@ -1,0 +1,180 @@
+package br.com.fiap.to;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class CarroNumSerieTO {
+	private int nrSerie;
+	private String dtInicio, dtFim, nmMarca, nmModelo, nrPlaca, 
+	dtFabricacao, nmEmpresa;
+	private int nrPneuCalibragem, dsPneuVidaUtil,
+	dsSuspensaoVidaUtil, dsQuilometragem, dsFreioVidaUtil, 
+ dsMotorVidaUtil, nrBateriaCarga, dsBateriaVidaUtil;
+	
+
+	public CarroNumSerieTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public int getNrSerie() {
+		return nrSerie;
+	}
+
+
+	public void setNrSerie(int nrSerie) {
+		this.nrSerie = nrSerie;
+	}
+
+
+	public String getDtInicio() {
+		return dtInicio;
+	}
+
+
+	public void setDtInicio(String dtInicio) {
+		this.dtInicio = dtInicio;
+	}
+
+
+	public String getDtFim() {
+		return dtFim;
+	}
+
+
+	public void setDtFim(String dtFim) {
+		this.dtFim = dtFim;
+	}
+
+
+	public String getNmMarca() {
+		return nmMarca;
+	}
+
+
+	public void setNmMarca(String nmMarca) {
+		this.nmMarca = nmMarca;
+	}
+
+
+	public String getNmModelo() {
+		return nmModelo;
+	}
+
+
+	public void setNmModelo(String nmModelo) {
+		this.nmModelo = nmModelo;
+	}
+
+
+	public String getNrPlaca() {
+		return nrPlaca;
+	}
+
+
+	public void setNrPlaca(String nrPlaca) {
+		this.nrPlaca = nrPlaca;
+	}
+
+
+	public String getDtFabricacao() {
+		return dtFabricacao;
+	}
+
+
+	public void setDtFabricacao(String dtFabricacao) {
+		this.dtFabricacao = dtFabricacao;
+	}
+
+
+	public String getNmEmpresa() {
+		return nmEmpresa;
+	}
+
+
+	public void setNmEmpresa(String nmEmpresa) {
+		this.nmEmpresa = nmEmpresa;
+	}
+
+
+	public int getNrPneuCalibragem() {
+		return nrPneuCalibragem;
+	}
+
+
+	public void setNrPneuCalibragem(int nrPneuCalibragem) {
+		this.nrPneuCalibragem = nrPneuCalibragem;
+	}
+
+
+	public int getDsPneuVidaUtil() {
+		return dsPneuVidaUtil;
+	}
+
+
+	public void setDsPneuVidaUtil(int dsPneuVidaUtil) {
+		this.dsPneuVidaUtil = dsPneuVidaUtil;
+	}
+
+
+	public int getDsSuspensaoVidaUtil() {
+		return dsSuspensaoVidaUtil;
+	}
+
+
+	public void setDsSuspensaoVidaUtil(int dsSuspensaoVidaUtil) {
+		this.dsSuspensaoVidaUtil = dsSuspensaoVidaUtil;
+	}
+
+
+	public int getDsQuilometragem() {
+		return dsQuilometragem;
+	}
+
+
+	public void setDsQuilometragem(int dsQuilometragem) {
+		this.dsQuilometragem = dsQuilometragem;
+	}
+
+
+	public int getDsFreioVidaUtil() {
+		return dsFreioVidaUtil;
+	}
+
+
+	public void setDsFreioVidaUtil(int dsFreioVidaUtil) {
+		this.dsFreioVidaUtil = dsFreioVidaUtil;
+	}
+
+
+	public int getDsMotorVidaUtil() {
+		return dsMotorVidaUtil;
+	}
+
+
+	public void setDsMotorVidaUtil(int dsMotorVidaUtil) {
+		this.dsMotorVidaUtil = dsMotorVidaUtil;
+	}
+
+
+	public int getNrBateriaCarga() {
+		return nrBateriaCarga;
+	}
+
+
+	public void setNrBateriaCarga(int nrBateriaCarga) {
+		this.nrBateriaCarga = nrBateriaCarga;
+	}
+
+
+	public int getDsBateriaVidaUtil() {
+		return dsBateriaVidaUtil;
+	}
+
+
+	public void setDsBateriaVidaUtil(int dsBateriaVidaUtil) {
+		this.dsBateriaVidaUtil = dsBateriaVidaUtil;
+	}
+
+}

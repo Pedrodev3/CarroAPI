@@ -1,0 +1,78 @@
+package br.com.fiap.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import br.com.fiap.factory.ConnectionFactory;
+import br.com.fiap.to.UsuarioTO;
+
+public class UsuarioDAO implements IDAO {
+
+	private Connection con = null;
+	private UsuarioTO usuario;
+
+	public UsuarioDAO() {
+		this.con = new ConnectionFactory().getConnection();
+	}
+	
+
+	public ArrayList<UsuarioTO> loginDAO() {
+
+		String sqlQuery = "SELECT * FROM T_GS_USUARIO WHERE DS_EMAIL = ? AND DS_SENHA = ?";
+		
+		ArrayList<UsuarioTO> resul = new ArrayList<UsuarioTO>();
+		
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sqlQuery);
+
+			ps.setString(1, usuario.getDsEmail());
+			ps.setString(2, usuario.getDsSenha());
+
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				usuario.setDsEmail(rs.getString(3));
+				usuario.setDsSenha(rs.getString(4));
+				resul.add(usuario);
+			}
+			
+			for (int i = 0; i < resul.size(); i++) {
+				if (resul.get(i).getDsEmail().equals(usuario.getDsEmail()) && resul.get(i).getDsSenha().equals(usuario.getDsSenha())) {
+					return resul;
+				}
+			}
+			
+			rs.close();
+			ps.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
+	public String insert() {
+		
+	}
+	
+	
+	public String insert() {
+		
+	}
+	
+	
+public String insert() {
+		
+	}
+	
+	
+
+}

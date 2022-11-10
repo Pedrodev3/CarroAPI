@@ -1,0 +1,233 @@
+package br.com.fiap.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import br.com.fiap.factory.ConnectionFactory;
+import br.com.fiap.to.UsuarioTO;
+
+public class UsuarioDAO implements IDAO {
+
+	private Connection con = null;
+	private UsuarioTO usuario;
+
+	public UsuarioDAO() {
+		this.con = new ConnectionFactory().getConnection();
+	}
+	
+
+	public ArrayList<UsuarioTO> loginDAO(Object obj) {
+
+		String sql = "SELECT * FROM T_GS_USUARIO WHERE DS_EMAIL = ? AND DS_SENHA = ?";
+		
+		ArrayList<UsuarioTO> resul = new ArrayList<UsuarioTO>();
+		
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sql);
+
+			ps.setString(1, usuario.getDsEmail());
+			ps.setString(2, usuario.getDsSenha());
+
+			ResultSet rs = ps.executeQuery();
+			
+			UsuarioTO ut = null;
+			
+			while (rs.next()) {
+				ut.setDsEmail(rs.getString(3));
+				ut.setDsSenha(rs.getString(4));
+				//resul.add(ut);
+			}
+			
+//			for (int i = 0; i < resul.size(); i++) {
+//				if (resul.get(i).getDsEmail().equals(usuario.getDsEmail()) 
+//				    && 
+//				    resul.get(i).getDsSenha().equals(usuario.getDsSenha())
+//				 ) {
+//					return resul.get(i);
+//				}
+//			}
+			
+			rs.close();
+			ps.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
+	public String insert(Object obj) {
+		usuario = (UsuarioTO) obj;
+		
+		String sql = "INSERT INTO T_GS_USUARIO (ID_USUARIO, NM_COMPLETO, DS_EMAIL, DS_SENHA, NR_CPF) "
+				+ "VALUES (SQ_GS_USUARIO.NEXTVAL, ?, ?, ?, ?)";
+		
+		PreparedStatement ps = null;
+		
+		try {
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, usuario.getNmCompleto());
+			ps.setString(2, usuario.getDsEmail());
+			ps.setString(3, usuario.getDsSenha());
+			ps.setString(4, usuario.getNrCpf());
+			
+			if (ps.executeUpdate() > 0) {
+				ps.close();
+				con.close();
+				return "Inserido com sucesso.\n" + "Conexão Fechada!";
+			} else {
+				ps.close();
+				con.close();
+				return "Error ao inserir.\n" + "Conexão Fechada!";
+			}
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
+	
+	
+	public String update(Object obj) {
+		usuario = (UsuarioTO) obj;
+		
+		String sql = "UPDATE T_GS_USUARIO SET NM_COMPLETO = ?, DS_EMAIL = ?, DS_SENHA = ?, NR_CPF = ? WHERE ID_USUARIO = ?";
+		
+		PreparedStatement ps = null;
+		
+		try {
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, usuario.getNmCompleto());
+			ps.setString(2, usuario.getDsEmail());
+			ps.setString(3, usuario.getDsSenha());
+			ps.setString(4, usuario.getNrCpf());
+			ps.setInt(5, usuario.getIdUsuario());
+			
+			if (ps.executeUpdate() > 0) {
+				ps.close();
+				con.close();
+				return "Atualizado com sucesso.\n" + "Conexão Fechada!";
+			} else {
+				ps.close();
+				con.close();
+				return "Error ao alterar.\n" + "Conexão Fechada!";
+			}
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
+	
+	
+	public String delete(Integer id) {
+		String sql = "DELETE FROM T_GS_USUARIO WHERE ID_USUARIO = ? ";
+
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+
+			if (ps.executeUpdate() > 0) {
+				ps.close();
+				con.close();
+				return "Excluido com sucesso!\n" + "Conexão Fechada!";
+			} else {
+				ps.close();
+				con.close();
+				return "Erro ao excluir!\n" + "Conexão Fechada!";
+			}
+		} catch (SQLException e) {
+			return e.getMessage();
+		}
+	}
+	
+	
+	public ArrayList<UsuarioTO> select(Integer id) {
+		String sql = "SELECT * FROM T_GS_USUARIO";
+		sql += " WHERE ID_USUARIO = ?";
+		ArrayList<UsuarioTO> resul = new ArrayList<UsuarioTO>();
+		
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				UsuarioTO u = new UsuarioTO();
+				u.setIdUsuario(rs.getInt(1));
+				u.setNmCompleto(rs.getString(2));
+				u.setDsEmail(rs.getString(3));
+				u.setDsSenha(rs.getString(4));
+				u.setNrCpf(rs.getString(5));
+				resul.add(u);
+
+				rs.close();
+				ps.close();
+				con.close();
+				return resul;
+			} 
+			else {
+				rs.close();
+				ps.close();
+				con.close();
+				return null;
+			}
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	
+	
+	public ArrayList<UsuarioTO> selectAll() {
+
+		String sql = "SELECT * FROM T_GS_USUARIO";
+		ArrayList<UsuarioTO> resul = new ArrayList<UsuarioTO>();
+
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs != null) {
+				while (rs.next()) {
+					UsuarioTO u = new UsuarioTO();
+
+					u.setIdUsuario(rs.getInt(1));
+					u.setNmCompleto(rs.getString(2));
+					u.setDsEmail(rs.getString(3));
+					u.setDsSenha(rs.getString(4));
+					u.setNrCpf(rs.getString(5));
+					resul.add(u);
+				}
+
+				rs.close();
+				ps.close();
+				con.close();
+				return resul;
+			} else {
+				ps.close();
+				con.close();
+				return null;
+			}
+		} catch (SQLException e) {
+			return null;
+		}
+		
+		
+	}
+	
+	
+	
+}

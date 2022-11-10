@@ -1,0 +1,54 @@
+package br.com.fiap.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import br.com.fiap.factory.ConnectionFactory;
+import br.com.fiap.to.UsuarioTO;
+
+public class UsuarioDAO {
+
+	private Connection con = null;
+	private UsuarioTO usuario;
+
+	public UsuarioDAO() {
+		this.con = new ConnectionFactory().getConnection();
+	}
+	
+
+	public Array loginDAO(UsuarioTO u) {
+
+		String sqlQuery = "SELECT * FROM T_GS_USUARIO WHERE DS_EMAIL = ? AND DS_SENHA = ?";
+		
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sqlQuery);
+
+			ps.setString(1, usuario.getDsEmail());
+			ps.setString(2, usuario.getDsSenha());
+
+			ResultSet rs = ps.executeQuery();
+			
+			UsuarioTO ut = null;
+
+			while (rs.next()) {
+				ut = new UsuarioTO();
+				ut.setDsEmail(rs.getString(3));
+				ut.setDsSenha(rs.getString(4));
+			}
+
+			rs.close();
+			ps.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+
+}

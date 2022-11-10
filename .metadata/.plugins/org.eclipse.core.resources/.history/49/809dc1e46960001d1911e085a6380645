@@ -1,0 +1,9 @@
+package br.com.fiap.test;
+
+public class UsuarioTeste {
+
+	public static void main(String[] args) {
+		
+	}
+
+}

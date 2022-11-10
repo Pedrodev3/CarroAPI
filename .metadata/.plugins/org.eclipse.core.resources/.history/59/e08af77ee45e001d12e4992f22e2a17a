@@ -1,0 +1,24 @@
+package br.com.fiap.bo;
+
+import java.util.ArrayList;
+
+import br.com.fiap.dao.TelefoneDAO;
+import br.com.fiap.dao.UsuarioDAO;
+import br.com.fiap.to.TelefoneTO;
+import br.com.fiap.to.UsuarioTO;
+
+public class TelefoneBO {
+	
+	private TelefoneDAO td;
+	
+	public String cadastrar(TelefoneTO tt) {
+
+		ud = new UsuarioDAO();
+
+		// Regras de negócio
+		if (ut != null) {
+			return ud.insert(ut);
+		}
+		return null;
+	}
+}

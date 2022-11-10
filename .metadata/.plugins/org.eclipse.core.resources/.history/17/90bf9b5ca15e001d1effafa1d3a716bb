@@ -1,0 +1,12 @@
+package br.com.fiap.bo;
+
+import java.util.ArrayList;
+
+import br.com.fiap.dao.AdminDAO;
+import br.com.fiap.to.AdminTO;
+
+public class AdminBO {
+
+	private AdminDAO ad
+	
+}

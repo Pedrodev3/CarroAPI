@@ -1,0 +1,49 @@
+package br.com.fiap.to;
+
+import java.time.LocalDate;
+
+public class CarroNumSerieTO {
+	private String nrSerie;
+	private LocalDate dtInicio;
+	private LocalDate dtFim;
+	private String nmMarca;
+	private String nmModelo;
+	private String nrPlaca;
+	private LocalDate dtFabricacao;
+	private String nmEmpresa;
+	private int nrPneuCalibragem, dsPneuVidaUtil,
+	dsSuspensaoVidaUtil, dsQuilometragem, dsFreioVidaUtil, 
+	dsMotorVidaUtil, nrBateriaBarga, dsBateriaVidaUtil;
+	
+
+	public CarroNumSerieTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public CarroNumSerieTO(String nrSerie, LocalDate dtInicio, LocalDate dtFim, String nmMarca, String nmModelo,
+			String nrPlaca, LocalDate dtFabricacao, String nmEmpresa, int nrPneuCalibragem, int dsPneuVidaUtil,
+			int dsSuspensaoVidaUtil, int dsQuilometragem, int dsFreioVidaUtil, int dsMotorVidaUtil, int nrBateriaBarga,
+			int dsBateriaVidaUtil) {
+		super();
+		this.nrSerie = nrSerie;
+		this.dtInicio = dtInicio;
+		this.dtFim = dtFim;
+		this.nmMarca = nmMarca;
+		this.nmModelo = nmModelo;
+		this.nrPlaca = nrPlaca;
+		this.dtFabricacao = dtFabricacao;
+		this.nmEmpresa = nmEmpresa;
+		this.nrPneuCalibragem = nrPneuCalibragem;
+		this.dsPneuVidaUtil = dsPneuVidaUtil;
+		this.dsSuspensaoVidaUtil = dsSuspensaoVidaUtil;
+		this.dsQuilometragem = dsQuilometragem;
+		this.dsFreioVidaUtil = dsFreioVidaUtil;
+		this.dsMotorVidaUtil = dsMotorVidaUtil;
+		this.nrBateriaBarga = nrBateriaBarga;
+		this.dsBateriaVidaUtil = dsBateriaVidaUtil;
+	}
+	
+	
+
+}

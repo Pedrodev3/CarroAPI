@@ -1,0 +1,61 @@
+package br.com.fiap.bo;
+
+import java.util.ArrayList;
+
+import br.com.fiap.dao.UsuarioDAO;
+import br.com.fiap.to.UsuarioTO;
+
+public class UsuarioBO {
+	
+	private UsuarioDAO ud;
+	
+	public ArrayList<UsuarioTO> validacao(UsuarioTO ut) {
+		ud = new UsuarioDAO();
+		return ud.loginDAO(ut);
+	}
+	
+	
+	public String cadastrar(UsuarioTO ut) {
+
+		ud = new UsuarioDAO();
+
+		// Regras de negócio
+		if (ut != null) {
+			return ud.insert(ut);
+		}
+		return null;
+	}
+	
+	
+	public void atualizar(UsuarioTO ut) {
+
+		ud = new UsuarioDAO();
+
+		// Regras de negócio
+		ud.update(ut);
+	}
+	
+	
+	public void remover(Integer id) {
+
+		ud = new UsuarioDAO();
+
+		// Regras de negócio
+		ud.delete(id);
+	}
+	
+	
+	public ArrayList<UsuarioTO> listar(Integer id) {
+
+		ArrayList<UsuarioTO> resultado = null;
+
+		ud = new UsuarioDAO();
+
+		// Regras de negócio
+		if (id != null) {
+			resultado = ud.select(id);
+		}
+
+		return resultado;
+	}
+}

@@ -1,0 +1,16 @@
+package br.com.fiap.to;
+
+public class AdminTO {
+
+	private int idAdmin;
+	private String nmAdmin;
+	private String dsEmail;
+	private String 
+	
+	public AdminTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+}

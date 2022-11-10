@@ -1,0 +1,9 @@
+package br.com.fiap.bo;
+
+import java.util.ArrayList;
+
+
+
+public class TelefoneBO {
+
+}

@@ -1,0 +1,33 @@
+package br.com.fiap.to;
+
+import java.time.LocalDate;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class CarroUsuarioTO {
+	private int idCarroUsuario;
+	private int idCarro;
+	private int idUsuario;
+	private int nrSerie;
+	private LocalDate dtInicio;
+	private LocalDate dtFim;
+	
+	public CarroUsuarioTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public CarroUsuarioTO(int idCarroUsuario, int idCarro, int idUsuario, int nrSerie, LocalDate dtInicio,
+			LocalDate dtFim) {
+		super();
+		this.idCarroUsuario = idCarroUsuario;
+		this.idCarro = idCarro;
+		this.idUsuario = idUsuario;
+		this.nrSerie = nrSerie;
+		this.dtInicio = dtInicio;
+		this.dtFim = dtFim;
+	}
+
+	
+	
+}

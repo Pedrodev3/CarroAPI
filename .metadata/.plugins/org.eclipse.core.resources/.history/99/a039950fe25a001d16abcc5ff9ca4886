@@ -1,0 +1,10 @@
+package br.com.fiap.to;
+
+public class TelefoneTO {
+	private int id
+
+	public TelefoneTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

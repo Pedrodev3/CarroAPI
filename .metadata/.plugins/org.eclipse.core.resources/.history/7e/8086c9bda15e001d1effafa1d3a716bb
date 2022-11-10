@@ -1,0 +1,73 @@
+package br.com.fiap.bo;
+
+import java.util.ArrayList;
+
+import br.com.fiap.dao.AdminDAO;
+import br.com.fiap.dao.UsuarioDAO;
+import br.com.fiap.to.AdminTO;
+import br.com.fiap.to.UsuarioTO;
+
+public class AdminBO {
+
+	private AdminDAO ad;
+	
+	
+	public AdminTO validacao(AdminTO at) {
+		ad = new AdminDAO();
+		return ad.loginDAO(at);
+	}
+	
+	
+	public String cadastrar(AdminTO at) {
+
+		ad = new AdminDAO();
+
+		// Regras de negócio
+		if (at != null) {
+			return ad.insert(at);
+		}
+		return null;
+	}
+	
+	
+	public void atualizar(AdminTO at) {
+
+		ad = new AdminDAO();
+
+		// Regras de negócio
+		ad.update(at);
+	}
+	
+	
+	public void remover(Integer id) {
+
+		ad = new AdminDAO();
+
+		// Regras de negócio
+		ad.delete(id);
+	}
+	
+	
+	public ArrayList<AdminTO> listar(Integer id) {
+
+		ArrayList<AdminTO> resultado = null;
+
+		ad = new AdminDAO();
+
+		// Regras de negócio
+		if (id != null) {
+			resultado = ad.select(id);
+		}
+
+		return resultado;
+	}
+	
+	
+	public ArrayList<UsuarioTO> listarTodos() {
+
+		ud = new UsuarioDAO();
+
+		// Regras de negócio
+		return ud.selectAll();
+	}
+}

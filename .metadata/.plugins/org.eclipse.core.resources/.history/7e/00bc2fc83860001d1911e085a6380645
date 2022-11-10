@@ -1,0 +1,86 @@
+package br.com.fiap.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import br.com.fiap.factory.ConnectionFactory;
+import br.com.fiap.to.CarroNumSerieTO;
+
+public class CarroNumSerieDAO {
+
+	private Connection con = null;
+	// private CarroNumSerieTO carroNumSerie;
+
+	public CarroNumSerieDAO() {
+		this.con = new ConnectionFactory().getConnection();
+	}
+
+	public CarroNumSerieTO loginDAO(int nrSerie) {
+
+		String sql = "SELECT CU.NR_SERIE, TO_CHAR(CU.DT_INICIO, 'DD/MM/YYYY') DT_INICIO, TO_CHAR(CU.DT_FIM, 'DD/MM/YYYY') DT_FIM, CA.NM_MARCA, CA.NM_MODELO, CA.NR_PLACA,"
+				+ " TO_CHAR(CA.DT_FABRICACAO, 'DD/MM/YYYY') DT_FABRICACAO, EMP.NM_EMPRESA, INC.NR_PNEU_CALIBRAGEM, INC.DS_PNEU_VIDA_UTIL, INC.DS_SUSPENSAO_VIDA_UTIL,"
+				+ " INC.DS_QUILOMETRAGEM, INC.DS_FREIO_VIDA_UTIL, TO_CHAR(INC.DT_ULT_MANUTENCAO, 'DD/MM/YYYY') DT_ULT_MANUTENCAO,"
+				+ " MOT.DS_MOTOR_VIDA_UTIL, BAT.NR_BATERIA_CARGA, BAT.DS_BATERIA_VIDA_UTIL"
+				+ " FROM T_GS_CARRO_USUARIO CU INNER JOIN T_GS_CARRO CA ON(CU.ID_CARRO = CA.ID_CARRO)"
+				+ " INNER JOIN T_GS_EMPRESA EMP ON(CA.ID_EMPRESA = EMP.ID_EMPRESA)"
+				+ " INNER JOIN T_GS_INFO_CARRO INC ON(CA.ID_CARRO = INC.ID_CARRO)"
+				+ " INNER JOIN T_GS_MOTOR MOT ON(INC.ID_INFO_CARRO = MOT.ID_INFO_CARRO)"
+				+ " INNER JOIN T_GS_BATERIA BAT ON(INC.ID_INFO_CARRO = BAT.ID_INFO_CARRO)" + " WHERE CU.NR_SERIE = ?";
+
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sql);
+
+			ps.setInt(1, nrSerie);
+
+			ResultSet rs = ps.executeQuery();
+
+			System.out.println("Teste");
+
+			// System.out.println(rs.next());
+
+			CarroNumSerieTO carroNumSerie = null;
+
+			while (rs.next()) {
+				carroNumSerie = new CarroNumSerieTO();
+				System.out.println("Dentro do while");
+
+				carroNumSerie.setNrSerie(rs.getInt("NR_SERIE"));
+				carroNumSerie.setDtInicio(rs.getString("DT_INICIO"));
+				/*
+				 * Transformando o LocalDate em String para mandar para o Banco de Dados Apenas
+				 * caso precisasse String aux = rs.getString(3); String data = aux.substring(0,
+				 * 4) + "-"; data += aux.substring(5, 7) + "-"; data += aux.substring(8, 10);
+				 * LocalDate dtFim = LocalDate.parse(data);
+				 */
+				carroNumSerie.setDtFim(rs.getString("DT_FIM"));
+				carroNumSerie.setNmMarca(rs.getString("NM_MARCA"));
+				carroNumSerie.setNmModelo(rs.getString("NM_MODELO"));
+				carroNumSerie.setNrPlaca(rs.getString("NR_PLACA"));
+				carroNumSerie.setDtFabricacao(rs.getString("DT_FABRICACAO"));
+				carroNumSerie.setNmEmpresa(rs.getString("NM_EMPRESA"));
+				carroNumSerie.setNrPneuCalibragem(rs.getInt("NR_PNEU_CALIBRAGEM"));
+				carroNumSerie.setDsPneuVidaUtil(rs.getInt("DS_PNEU_VIDA_UTIL"));
+				carroNumSerie.setDsSuspensaoVidaUtil(rs.getInt("DS_SUSPENSAO_VIDA_UTIL"));
+				carroNumSerie.setDsQuilometragem(rs.getInt("DS_QUILOMETRAGEM"));
+				carroNumSerie.setDsFreioVidaUtil(rs.getInt("DS_FREIO_VIDA_UTIL"));
+				carroNumSerie.setDtUltManutencao(rs.getString("DT_ULT_MANUTENCAO"));
+				carroNumSerie.setDsMotorVidaUtil(rs.getInt("DS_MOTOR_VIDA_UTIL"));
+				carroNumSerie.setNrBateriaCarga(rs.getInt("NR_BATERIA_CARGA"));
+				carroNumSerie.setDsBateriaVidaUtil(rs.getInt("DS_BATERIA_VIDA_UTIL"));
+				System.out.println("Teste Final");
+			}
+
+			con.close();
+			return carroNumSerie;
+
+			// return resul;
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+
+}

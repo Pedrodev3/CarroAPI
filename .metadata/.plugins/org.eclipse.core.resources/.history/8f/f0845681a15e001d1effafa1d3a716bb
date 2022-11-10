@@ -1,0 +1,31 @@
+package br.com.fiap.bo;
+
+import java.util.ArrayList;
+
+import br.com.fiap.dao.AdminDAO;
+import br.com.fiap.dao.UsuarioDAO;
+import br.com.fiap.to.AdminTO;
+import br.com.fiap.to.UsuarioTO;
+
+public class AdminBO {
+
+	private AdminDAO ad;
+	
+	
+	public AdminTO validacao(AdminTO at) {
+		ad = new AdminDAO();
+		return ad.loginDAO(at);
+	}
+	
+	
+	public String cadastrar(AdminTO at) {
+
+		ad = new AdminDAO();
+
+		// Regras de negócio
+		if (at != null) {
+			return ad.insert(at);
+		}
+		return null;
+	}
+}

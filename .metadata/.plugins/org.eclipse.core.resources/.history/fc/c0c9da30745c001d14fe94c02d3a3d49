@@ -1,0 +1,23 @@
+package br.com.fiap.to;
+
+import java.time.LocalDate;
+
+public class CarroNumSerieTO {
+	private String nrSerie;
+	private LocalDate dtInicio;
+	private LocalDate dtFim;
+	private String nmMarca;
+	private String nmModelo;
+	private String nrPlaca;
+	private LocalDate dtFabricacao;
+	private String nmEmpresa;
+	private int nrPneuCalibragem, dsPneuVidaUtil,
+	dsSuspensaoVidaUtil, dsQuilometragem, dsFreioVidaUtil, 
+	dsMotorVidaUtil, nrBateriaBarga, dsBateriaVidaUtil;
+	
+
+	public CarroNumSerieTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

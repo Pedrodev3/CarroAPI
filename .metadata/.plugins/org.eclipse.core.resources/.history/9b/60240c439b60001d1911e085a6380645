@@ -1,0 +1,10 @@
+package br.com.fiap.test;
+
+public class CarroNumSerieTeste {
+
+	public static void main(String[] args) {
+		CarroNumSerieTO cnst = new CarroNumSerieTO()
+
+	}
+
+}

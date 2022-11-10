@@ -1,0 +1,88 @@
+package br.com.fiap.resource;
+
+import javax.websocket.server.PathParam;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
+
+import br.com.fiap.bo.UsuarioBO;
+import br.com.fiap.to.UsuarioTO;
+
+@Path("/usuario")
+public class UsuarioResource {
+	
+	private UsuarioBO ub = new UsuarioBO();
+	
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response loginUsuario(UsuarioTO ut) {
+		
+		return Response
+		.status(200)
+		.entity(ub.validacao(ut))
+		.build();
+	}
+	
+	
+	// Cadastrar / Insert / Post (Postman)
+		@POST
+		@Consumes(MediaType.APPLICATION_JSON)
+		public Response cadastrar(UsuarioTO ut, @Context UriInfo uriInfo) {
+			// Cadastrando um novo recrutador
+			ub.cadastrar(ut);
+
+			// Construindo o PATH
+			UriBuilder builder = uriInfo.getAbsolutePathBuilder();
+
+			// Parseando o código e concatenando com o PATH
+			builder.path(Integer.toString(ut.getIdUsuario()));
+
+			// Retornando o Status Code do HTTP através do Builder
+			return Response.created(builder.build()).build();
+		}
+		
+		
+		// Atualizar / Update / Put (Postman)
+		@PUT
+		@Path("/{id}")
+		@Consumes(MediaType.APPLICATION_JSON)
+		public Response atualizar(UsuarioTO ut, @PathParam("id") int id) {
+
+			// Setar o ID do registro do recrutador
+			ut.setIdUsuario(id);
+
+			// Atualizando o objeto (registro do recrutador)
+			ub.atualizar(ut);
+
+			// Retornando o Status 200
+			return Response.ok().build();
+		}
+		
+		
+		// Excluir / Delete / Delete (Postman)
+		@DELETE
+		@Path("/{id}")
+		public void excluir(@PathParam("id") int id) {
+			ub.remover(id);
+		}
+		
+		
+		// Buscar / Select / GET-BY_ID (Postman)
+		@GET
+		@Path("/{id}")
+		@Produces(MediaType.APPLICATION_JSON)
+		public ArrayList<EstadoTO> buscar(@PathParam("id") int id) {
+			return eb.listar(id);
+		}
+
+}

@@ -1,0 +1,70 @@
+package br.com.fiap.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import br.com.fiap.factory.ConnectionFactory;
+import br.com.fiap.to.CarroUsuarioTO;
+import br.com.fiap.to.UsuarioTO;
+
+public class CarroUsuarioDAO implements IDAO {
+	private Connection con = null;
+
+	public CarroUsuarioDAO() {
+		this.con = new ConnectionFactory().getConnection();
+	}
+	
+	
+	public CarroUsuarioTO loginDAO(CarroUsuarioTO carroUsuario) {
+
+		String sql = "SELECT CU.NR_SERIE, CU.DT_INICIO, CU.DT_FIM, CA.NM_MARCA, CA.NM_MODELO, CA.NR_PLACA,"
+				+ " CA.DT_FABRICACAO, EMP.NM_EMPRESA, INC.NR_PNEU_CALIBRAGEM, INC.DS_PNEU_VIDA_UTIL,"
+				+ " INC.DS_QUILOMETRAGEM, INC.DS_FREIO_VIDA_UTIL, INC.DT_ULT_MANUTENCAO,"
+				+ " MOT.DS_MOTOR_VIDA_UTIL, BAT.NR_BATERIA_CARGA, BAT.DS_BATERIA_VIDA_UTIL"
+				+ " FROM T_GS_CARRO_USUARIO CU INNER JOIN T_GS_CARRO CA ON(CU.ID_CARRO = CA.ID_CARRO) "
+				+ "INNER JOIN T_GS_EMPRESA EMP ON(CA.ID_EMPRESA = EMP.ID_EMPRESA) "
+				+ "INNER JOIN T_GS_INFO_CARRO INC ON(CA.ID_CARRO = INC.ID_CARRO) "
+				+ "INNER JOIN T_GS_MOTOR MOT ON(INC.ID_INFO_CARRO = MOT.ID_INFO_CARRO) "
+				+ "INNER JOIN T_GS_BATERIA BAT ON(INC.ID_INFO_CARRO = BAT.ID_INFO_CARRO) WHERE CU.NR_SERIE = ?;";
+		
+		ArrayList<CarroUsuarioTO> resul = new ArrayList<CarroUsuarioTO>();
+		
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sql);
+
+			ps.setString(1, car);
+
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				carroUsuario.setDsEmail(rs.getString(3));
+				carroUsuario.setDsSenha(rs.getString(4));
+				resul.add(carroUsuario);
+			}
+			
+			for (int i = 0; i < resul.size(); i++) {
+				if (resul.get(i).getNrSerie().equals(carroUsuario.getNrSerie()) 
+				 ) {
+					return resul.get(i);
+				}
+			}
+			
+			rs.close();
+			ps.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
+	
+}

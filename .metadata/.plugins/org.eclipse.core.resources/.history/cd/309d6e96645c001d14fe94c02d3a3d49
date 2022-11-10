@@ -1,0 +1,25 @@
+package br.com.fiap.to;
+
+public class EmpresaTO {
+
+	private int idEmpresa;
+	private String nmEmpresa;
+	private String nrCnpj;
+	private String dsEmail;
+	private String dsSenha;
+	
+	public EmpresaTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public EmpresaTO(int idEmpresa, String nmEmpresa, String nrCnpj, String dsEmail, String dsSenha) {
+		super();
+		this.idEmpresa = idEmpresa;
+		this.nmEmpresa = nmEmpresa;
+		this.nrCnpj = nrCnpj;
+		this.dsEmail = dsEmail;
+		this.dsSenha = dsSenha;
+	}
+
+	
+}

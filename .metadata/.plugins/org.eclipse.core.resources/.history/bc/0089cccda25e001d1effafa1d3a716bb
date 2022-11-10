@@ -1,0 +1,76 @@
+package br.com.fiap.to;
+
+import java.time.LocalDate;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class CarroUsuarioTO {
+	private int idCarroUsuario, idCarro, idUsuario, nrSerie;
+	private LocalDate dtInicio, dtFim;
+	private LocalDate ;
+	
+	public CarroUsuarioTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public CarroUsuarioTO(int idCarroUsuario, int idCarro, int idUsuario, String nrSerie, LocalDate dtInicio,
+			LocalDate dtFim) {
+		super();
+		this.idCarroUsuario = idCarroUsuario;
+		this.idCarro = idCarro;
+		this.idUsuario = idUsuario;
+		this.nrSerie = nrSerie;
+		this.dtInicio = dtInicio;
+		this.dtFim = dtFim;
+	}
+
+	public int getIdCarroUsuario() {
+		return idCarroUsuario;
+	}
+
+	public void setIdCarroUsuario(int idCarroUsuario) {
+		this.idCarroUsuario = idCarroUsuario;
+	}
+
+	public int getIdCarro() {
+		return idCarro;
+	}
+
+	public void setIdCarro(int idCarro) {
+		this.idCarro = idCarro;
+	}
+
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public String getNrSerie() {
+		return nrSerie;
+	}
+
+	public void setNrSerie(String nrSerie) {
+		this.nrSerie = nrSerie;
+	}
+
+	public LocalDate getDtInicio() {
+		return dtInicio;
+	}
+
+	public void setDtInicio(LocalDate dtInicio) {
+		this.dtInicio = dtInicio;
+	}
+
+	public LocalDate getDtFim() {
+		return dtFim;
+	}
+
+	public void setDtFim(LocalDate dtFim) {
+		this.dtFim = dtFim;
+	}
+	
+}

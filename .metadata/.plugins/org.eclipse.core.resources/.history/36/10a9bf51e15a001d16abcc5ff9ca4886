@@ -1,0 +1,15 @@
+package br.com.fiap.to;
+
+public class CarroTO {
+	
+	private int idCarro;
+	private String nmMarca;
+	private String nmModelo;
+	private String nrPlaca;
+	p
+
+	public CarroTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,40 @@
+package br.com.fiap.test;
+
+import java.sql.SQLException;
+
+import br.com.fiap.bo.UsuarioBO;
+import br.com.fiap.dao.UsuarioDAO;
+import br.com.fiap.to.UsuarioTO;
+
+public class UsuarioTeste {
+
+	public static void main(String[] args) throws SQLException {
+		UsuarioTO ut = new UsuarioTO();
+		ut.setNmCompleto("João Victor");
+		ut.setDsEmail("joao123");
+		ut.setDsSenha("1234abc");
+		ut.setNrCpf("5256");
+		ut.setIdUsuario(1);
+
+		UsuarioDAO ud = new UsuarioDAO();
+
+		UsuarioBO ub = new UsuarioBO();
+
+//		System.out.println("RESPOSTA: " + ud.loginDAO(ut).getDsEmail());
+//		System.out.println("RESPOSTA: " + ud.insert(ut));
+//		System.out.println("RESPOSTA: " + ud.update(ut));
+//		System.out.println("RESPOSTA: " + ud.delete(1));
+//		System.out.println("RESPOSTA: " + ud.selectAll());
+//		System.out.println("RESPOSTA: " + ud.select(1));
+		
+		
+		System.out.println("RESPOSTA: " + ub.validacao(ut).getDsEmail());
+		System.out.println("RESPOSTA: " + ub.cadastrar(ut));
+		//System.out.println("RESPOSTA: " + ub.atualizar(ut));
+		System.out.println("RESPOSTA: " + ub.remover(1));
+		System.out.println("RESPOSTA: " + ub.listar(1));
+		System.out.println("RESPOSTA: " + ub.listarTodos());
+
+	}
+
+}

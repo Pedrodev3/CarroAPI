@@ -1,0 +1,20 @@
+package br.com.fiap.bo;
+
+import java.util.List;
+
+import br.com.fiap.dao.CarroNumSerieDAO;
+import br.com.fiap.dao.UsuarioDAO;
+import br.com.fiap.to.CarroNumSerieTO;
+import br.com.fiap.to.UsuarioTO;
+
+public class CarroNumSerieBO {
+	
+	private CarroNumSerieDAO cnsd;
+	
+	
+	public CarroNumSerieTO validacao(Integer id) {
+		cnsd = new CarroNumSerieDAO();
+		return cnsd.buscaDAO(cnst);
+	}
+	
+}

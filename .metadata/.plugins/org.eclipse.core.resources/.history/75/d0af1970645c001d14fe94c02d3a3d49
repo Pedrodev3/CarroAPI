@@ -1,0 +1,12 @@
+package br.com.fiap.to;
+
+public class EmpresaTO {
+
+	private int 
+	
+	public EmpresaTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	
+}

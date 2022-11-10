@@ -1,0 +1,15 @@
+package br.com.fiap.to;
+
+public class InfoCarro {
+	private int idInfoCarro, idCarro, nrPneuIeCalibragem, nrPneuIdCalibragem, nrPneuSeCalibragem,
+	nrPneuSdCalibragem, dsPneuIeVidaUtil, dsPneuIdVidaUtil, dsPneuSeVidaUtil, dsPneuSdVidaUtil,
+	dsSuspensaoFrontalVidaUtil, dsSuspensaoTrasVidaUtil, dsQuilometragem, dsFreioVidaUtil;
+	
+	private 
+	
+
+	public InfoCarro() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

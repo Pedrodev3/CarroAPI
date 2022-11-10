@@ -1,0 +1,26 @@
+package br.com.fiap.to;
+
+public class UsuarioTO {
+	
+	private int idUsuario;
+	private String nmCompleto;
+	private String dsEmail;
+	private String dsSenha;
+	private String nrCpf;
+
+	public UsuarioTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public UsuarioTO(int idUsuario, String nmCompleto, String dsEmail, String dsSenha, String nrCpf) {
+		super();
+		this.idUsuario = idUsuario;
+		this.nmCompleto = nmCompleto;
+		this.dsEmail = dsEmail;
+		this.dsSenha = dsSenha;
+		this.nrCpf = nrCpf;
+	}
+	
+	
+
+}

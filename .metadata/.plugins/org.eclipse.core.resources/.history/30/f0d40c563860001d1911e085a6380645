@@ -1,0 +1,72 @@
+package br.com.fiap.bo;
+
+import java.util.List;
+
+import br.com.fiap.dao.EmpresaDAO;
+import br.com.fiap.to.EmpresaTO;
+
+
+public class EmpresaBO {
+
+	private EmpresaDAO ad;
+	
+	
+	public EmpresaTO validacao(EmpresaTO at) {
+		ad = new EmpresaDAO();
+		return ad.loginDAO(at);
+	}
+	
+	
+	public String cadastrar(EmpresaTO at) {
+
+		ad = new EmpresaDAO();
+
+		// Regras de negócio
+		if (at != null) {
+			return ad.insert(at);
+		}
+		return null;
+	}
+	
+	
+	public void atualizar(EmpresaTO at) {
+
+		ad = new EmpresaDAO();
+
+		// Regras de negócio
+		ad.update(at);
+	}
+	
+	
+	public void remover(Integer id) {
+
+		ad = new EmpresaDAO();
+
+		// Regras de negócio
+		ad.delete(id);
+	}
+	
+	
+	public List<EmpresaTO> listar(Integer id) {
+
+		List<EmpresaTO> resultado = null;
+
+		ad = new EmpresaDAO();
+
+		// Regras de negócio
+		if (id != null) {
+			resultado = ad.select(id);
+		}
+
+		return resultado;
+	}
+	
+	
+	public List<EmpresaTO> listarTodos() {
+
+		ad = new EmpresaDAO();
+
+		// Regras de negócio
+		return ad.selectAll();
+	}
+}

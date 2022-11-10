@@ -1,0 +1,197 @@
+package br.com.fiap.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.fiap.factory.ConnectionFactory;
+import br.com.fiap.to.TelefoneTO;
+
+
+public class TelefoneDAO implements IDAO {
+	
+	private Connection con = null;
+	
+	public TelefoneDAO() {
+		this.con = new ConnectionFactory().getConnection();
+	}
+	
+	
+	/**
+	 * Cadastro de informações do telefone.
+	 * 
+	 * @throws SQLException
+	 */
+	public String insert(Object obj) throws SQLException {
+		
+		TelefoneTO telefone = (TelefoneTO) obj;
+		
+		String sql = "INSERT INTO T_GS_TELEFONE (ID_TELEFONE, NR_DDD, NR_DDI, NR_TELEFONE, ST_TELEFONE) "
+				+ "VALUES (SQ_GS_USUARIO.CURRVAL, ?, ?, ?, ?)";
+
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sql);
+
+			ps.setInt(1, telefone.getNrDdd());
+			ps.setInt(2, telefone.getNrDdi());
+			ps.setInt(3, telefone.getNrTelefone());
+			ps.setString(4, telefone.getStTelefone());
+			if (ps.executeUpdate() > 0) {
+				return "Inserido com sucesso.";
+			} else {
+				return "Erro ao inserir.";
+			}
+
+		} catch (SQLException e) {
+			return e.getMessage();
+		} finally {
+			ps.close();
+			con.close();
+		}
+	}
+	
+	
+	/**
+	 * Atualização de informações do telefone a partir da chave primária
+	 * da tabela (T_GS_TELEFONE) do banco de dados.
+	 */
+	public String update(Object obj) {
+		TelefoneTO telefone = (TelefoneTO) obj;
+		
+		String sql = "UPDATE T_GS_TELEFONE SET NR_DDD = ?, NR_DDI = ?, NR_TELEFONE = ?, ST_TELEFONE = ? WHERE ID_TELEFONE = ?";
+		
+		PreparedStatement ps = null;
+		
+		try {
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, telefone.getNrDdd());
+			ps.setInt(2, telefone.getNrDdi());
+			ps.setInt(3, telefone.getNrTelefone());
+			ps.setString(4, telefone.getStTelefone());
+			ps.setInt(5, telefone.getIdTelefone());
+			
+			if (ps.executeUpdate() > 0) {
+				ps.close();
+				con.close();
+				return "Atualizado com sucesso.\n" + "Conexão Fechada!";
+			} else {
+				ps.close();
+				con.close();
+				return "Error ao alterar.\n" + "Conexão Fechada!";
+			}
+		} catch (Exception e) {
+			return e.getMessage();
+		} finally {
+			ps.close();
+			con.close();
+		}
+	}
+	
+	
+	/**
+	 * Método para deletar informações relacionadas ao telefone 
+	 * a partir da chave primária da tabela (T_GS_EMPRESA) do banco de dados.
+	 */
+	public String delete(Integer id) {
+		String sql = "DELETE FROM T_GS_TELEFONE WHERE ID_TELEFONE = ? ";
+
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+
+			if (ps.executeUpdate() > 0) {
+				ps.close();
+				con.close();
+				return "Excluido com sucesso!\n" + "Conexão Fechada!";
+			} else {
+				ps.close();
+				con.close();
+				return "Erro ao excluir!\n" + "Conexão Fechada!";
+			}
+		} catch (SQLException e) {
+			return e.getMessage();
+		}
+	}
+	
+	
+	/**
+	 * Seleção de informações do telefone a partir da chave primária
+	 * da tabela (T_GS_TELEFONE) do banco de dados.
+	 */
+	public List<TelefoneTO> select(Integer id) {
+		String sql = "SELECT * FROM T_GS_TELEFONE"
+				+ " WHERE ID_TELEFONE = ? ";
+
+		List<TelefoneTO> resul = new ArrayList<TelefoneTO>();
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				TelefoneTO tt = new TelefoneTO();
+				tt.setIdTelefone(rs.getInt(1));
+				tt.setNrDdd(rs.getInt(2));
+				tt.setNrDdi(rs.getInt(3));
+				tt.setNrTelefone(rs.getInt(4));
+				tt.setStTelefone(rs.getString(5));
+				resul.add(tt);
+
+				con.close();
+				return resul;
+			} else {
+				con.close();
+				return null;
+			}
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	
+	
+	/**
+	 * Seleção das informações de todos os telefones cadastrados.
+	 */
+	public List<TelefoneTO> selectAll() {
+		String sql = "SELECT * FROM T_GS_TELEFONE";
+
+		List<TelefoneTO> resul = new ArrayList<TelefoneTO>();
+		PreparedStatement ps = null;
+
+		try {
+
+			ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs != null) {
+				while (rs.next()) {
+					TelefoneTO tt = new TelefoneTO();
+					tt.setIdTelefone(rs.getInt(1));
+					tt.setNrDdd(rs.getInt(2));
+					tt.setNrDdi(rs.getInt(3));
+					tt.setNrTelefone(rs.getInt(4));
+					tt.setStTelefone(rs.getString(5));
+					resul.add(tt);
+				}
+				con.close();
+				return resul;
+			} else {
+				con.close();
+				return null;
+			}
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	
+}

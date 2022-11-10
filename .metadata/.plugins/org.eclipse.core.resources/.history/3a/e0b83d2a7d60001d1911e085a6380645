@@ -1,0 +1,89 @@
+package br.com.fiap.resource;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.ws.rs.PathParam; /**/
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
+
+import br.com.fiap.bo.TelefoneBO;
+import br.com.fiap.to.TelefoneTO;
+
+
+@Path("/telefone")
+public class TelefoneResource {
+
+	private TelefoneBO tb = new TelefoneBO();
+	
+	
+	// Cadastrar / Insert / Post (Postman)
+		@POST
+		@Consumes(MediaType.APPLICATION_JSON)
+		public Response cadastrar(TelefoneTO tt, @Context UriInfo uriInfo) throws SQLException {
+			// Cadastrando um novo recrutador
+			tb.cadastrar(tt);
+
+			// Construindo o PATH
+			UriBuilder builder = uriInfo.getAbsolutePathBuilder();
+
+			// Parseando o código e concatenando com o PATH
+			builder.path(Integer.toString(tt.getIdTelefone()));
+
+			// Retornando o Status Code do HTTP através do Builder
+			return Response.created(builder.build()).build();
+		}
+		
+		
+		// Atualizar / Update / Put (Postman)
+		@PUT
+		@Path("/{id}")
+		@Consumes(MediaType.APPLICATION_JSON)
+		public Response atualizar(TelefoneTO tt, @PathParam("id") int id) throws SQLException {
+
+			// Setar o ID do telefone
+			tt.setIdTelefone(id);
+
+			// Atualizando o objeto (dados do telefone)
+			tb.atualizar(tt);
+
+			// Retornando o Status 200
+			return Response.ok().build();
+		}
+		
+		
+		// Excluir / Delete / Delete (Postman)
+		@DELETE
+		@Path("/{id}")
+		public void excluir(@PathParam("id") int id) throws SQLException {
+			tb.remover(id);
+		}
+		
+		
+		// Buscar / Select / GET-BY_ID (Postman)
+		@GET
+		@Path("/{id}")
+		@Produces(MediaType.APPLICATION_JSON)
+		public List<TelefoneTO> buscar(@PathParam("id") int id) {
+			return tb.listar(id);
+		}
+		
+		
+		// BuscarTodos / SelectAll / GET-ALL (Postman)
+		@GET
+		@Produces(MediaType.APPLICATION_JSON)
+		public List<TelefoneTO> buscarTodos() {
+			return tb.listarTodos();
+		}
+	
+}

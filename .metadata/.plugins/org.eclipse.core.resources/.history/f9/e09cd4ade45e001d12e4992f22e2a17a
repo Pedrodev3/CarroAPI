@@ -1,0 +1,57 @@
+package br.com.fiap.bo;
+
+import java.util.ArrayList;
+
+import br.com.fiap.dao.TelefoneDAO;
+import br.com.fiap.dao.UsuarioDAO;
+import br.com.fiap.to.TelefoneTO;
+import br.com.fiap.to.UsuarioTO;
+
+public class TelefoneBO {
+	
+	private TelefoneDAO td;
+	
+	public String cadastrar(TelefoneTO tt) {
+
+		td = new TelefoneDAO();
+
+		// Regras de negócio
+		if (tt != null) {
+			return td.insert(tt);
+		}
+		return null;
+	}
+	
+	
+	public void atualizar(TelefoneTO tt) {
+
+		td = new TelefoneDAO();
+
+		// Regras de negócio
+		td.update(tt);
+	}
+	
+	
+	public void remover(Integer id) {
+
+		td = new TelefoneDAO();
+
+		// Regras de negócio
+		td.delete(id);
+	}
+	
+	
+	public ArrayList<TelefoneTO> listar(Integer id) {
+
+		ArrayList<TelefoneTO> resultado = null;
+
+		ud = new TelefoneDAO();
+
+		// Regras de negócio
+		if (id != null) {
+			resultado = ud.select(id);
+		}
+
+		return resultado;
+	}
+}

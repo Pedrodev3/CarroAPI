@@ -1,0 +1,41 @@
+package br.com.fiap.to;
+
+public class InfoCarro {
+	private int idInfoCarro, idCarro, nrPneuIeCalibragem, nrPneuIdCalibragem, nrPneuSeCalibragem,
+	nrPneuSdCalibragem, dsPneuIeVidaUtil, dsPneuIdVidaUtil, dsPneuSeVidaUtil, dsPneuSdVidaUtil,
+	dsSuspensaoFrontalVidaUtil, dsSuspensaoTrasVidaUtil, dsQuilometragem, dsFreioVidaUtil;
+	
+	private String dtUltManutencao;
+	
+
+	public InfoCarro() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public InfoCarro(int idInfoCarro, int idCarro, int nrPneuIeCalibragem, int nrPneuIdCalibragem,
+			int nrPneuSeCalibragem, int nrPneuSdCalibragem, int dsPneuIeVidaUtil, int dsPneuIdVidaUtil,
+			int dsPneuSeVidaUtil, int dsPneuSdVidaUtil, int dsSuspensaoFrontalVidaUtil, int dsSuspensaoTrasVidaUtil,
+			int dsQuilometragem, int dsFreioVidaUtil, String dtUltManutencao) {
+		super();
+		this.idInfoCarro = idInfoCarro;
+		this.idCarro = idCarro;
+		this.nrPneuIeCalibragem = nrPneuIeCalibragem;
+		this.nrPneuIdCalibragem = nrPneuIdCalibragem;
+		this.nrPneuSeCalibragem = nrPneuSeCalibragem;
+		this.nrPneuSdCalibragem = nrPneuSdCalibragem;
+		this.dsPneuIeVidaUtil = dsPneuIeVidaUtil;
+		this.dsPneuIdVidaUtil = dsPneuIdVidaUtil;
+		this.dsPneuSeVidaUtil = dsPneuSeVidaUtil;
+		this.dsPneuSdVidaUtil = dsPneuSdVidaUtil;
+		this.dsSuspensaoFrontalVidaUtil = dsSuspensaoFrontalVidaUtil;
+		this.dsSuspensaoTrasVidaUtil = dsSuspensaoTrasVidaUtil;
+		this.dsQuilometragem = dsQuilometragem;
+		this.dsFreioVidaUtil = dsFreioVidaUtil;
+		this.dtUltManutencao = dtUltManutencao;
+	}
+	
+	
+	
+
+}

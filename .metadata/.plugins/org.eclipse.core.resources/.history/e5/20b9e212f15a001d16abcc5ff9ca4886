@@ -1,0 +1,13 @@
+package br.com.fiap.to;
+
+public class Bateria {
+	
+	private int idBateria, idInf;
+
+	public Bateria() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+}

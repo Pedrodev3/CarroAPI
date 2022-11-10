@@ -1,0 +1,9 @@
+package br.com.fiap.to;
+
+public class MotorTO {
+
+	public MotorTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,14 @@
+package br.com.fiap.to;
+
+public class UsuarioTO {
+	
+	private int idUsuario;
+	private String nmCompleto;
+	private String dsEmail;
+	
+
+	public UsuarioTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

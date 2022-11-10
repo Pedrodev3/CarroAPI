@@ -1,0 +1,29 @@
+package br.com.fiap.bo;
+
+import br.com.fiap.dao.CarroNumSerieDAO;
+import br.com.fiap.to.CarroNumSerieTO;
+
+
+public class CarroNumSerieBO {
+	
+	private CarroNumSerieDAO cnsd;
+	
+	
+	public CarroNumSerieTO validar(Integer nrSerie) {
+		
+		cnsd = new CarroNumSerieDAO();
+		
+		// Regras de negócio
+		return cnsd.searchDAO(nrSerie);
+	}
+	
+	
+	public CarroNumSerieTO validarTodos(CarroNumSerieTO cnst) {
+		
+		cnsd = new CarroNumSerieDAO();
+		
+		// Regras de negócio
+		return cnsd.searchDAO();
+	}
+	
+}

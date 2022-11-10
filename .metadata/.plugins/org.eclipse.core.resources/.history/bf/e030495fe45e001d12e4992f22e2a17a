@@ -1,0 +1,11 @@
+package br.com.fiap.bo;
+
+import java.util.ArrayList;
+
+import br.com.fiap.dao.TelefoneDAO;
+import br.com.fiap.to.TelefoneTO;
+
+public class TelefoneBO {
+	
+	private TelefoneDAO 
+}

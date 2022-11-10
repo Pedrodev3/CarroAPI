@@ -1,0 +1,29 @@
+package br.com.fiap.bo;
+
+import java.util.ArrayList;
+
+import br.com.fiap.dao.UsuarioDAO;
+import br.com.fiap.to.UsuarioTO;
+
+public class UsuarioBO {
+	
+	private UsuarioDAO ud;
+	
+	public ArrayList<UsuarioTO> validacao(UsuarioTO ut) {
+		ud = new UsuarioDAO();
+		return ud.loginDAO(ut);
+	}
+	
+	
+	public String cadastrar(UsuarioTO et) {
+
+		ed = new EstadoDAO();
+
+		// Regras de negócio
+		if (et != null) {
+			return ed.insert(et);
+		}
+
+		return null;
+	}
+}

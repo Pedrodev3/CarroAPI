@@ -1,0 +1,9 @@
+package br.com.fiap.to;
+
+public class Bateria {
+
+	public Bateria() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,97 @@
+package br.com.fiap.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import br.com.fiap.factory.ConnectionFactory;
+import br.com.fiap.to.AdminTO;
+import br.com.fiap.to.UsuarioTO;
+
+public class AdminDAO implements IDAO {
+
+	private Connection con = null;
+	
+	public AdminDAO() {
+		this.con = new ConnectionFactory().getConnection();
+	}
+
+	
+	public AdminTO loginDAO(AdminTO admin) {
+
+		String sql = "SELECT * FROM T_GS_ADMIN WHERE DS_EMAIL = ? AND DS_SENHA = ?";
+		
+		ArrayList<AdminTO> resul = new ArrayList<AdminTO>();
+		
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sql);
+
+			ps.setString(1, admin.getDsEmail());
+			ps.setString(2, admin.getDsSenha());
+
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				admin.setDsEmail(rs.getString(3));
+				admin.setDsSenha(rs.getString(4));
+				resul.add(admin);
+			}
+			
+			for (int i = 0; i < resul.size(); i++) {
+				if (resul.get(i).getDsEmail().equals(admin.getDsEmail()) 
+				    && 
+				    resul.get(i).getDsSenha().equals(admin.getDsSenha())
+				 ) {
+					return resul.get(i);
+				}
+			}
+			
+			rs.close();
+			ps.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
+	public String insert(Object obj) {
+		AdminTO admin = (AdminTO) obj;
+		
+		String sql = "INSERT INTO T_GS_ADMIN (ID_ADIMIN, NM_ADIMIN, DS_EMAIL, DS_SENHA) "
+				+ "VALUES (SQ_GS_ADMIN.NEXTVAL, ?, ?, ?)";
+		
+		PreparedStatement ps = null;
+		
+		try {
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, admin.getNmAdmin());
+			ps.setString(2, admin.getDsEmail());
+			ps.setString(3, admin.getDsSenha());
+			
+			if (ps.executeUpdate() > 0) {
+				ps.close();
+				con.close();
+				return "Inserido com sucesso.\n" + "Conexão Fechada!";
+			} else {
+				ps.close();
+				con.close();
+				return "Error ao inserir.\n" + "Conexão Fechada!";
+			}
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
+	
+	
+	
+
+}

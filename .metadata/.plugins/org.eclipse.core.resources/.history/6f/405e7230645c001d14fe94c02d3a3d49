@@ -1,0 +1,11 @@
+package br.com.fiap.to;
+
+public class AdminTO {
+
+	public AdminTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+}

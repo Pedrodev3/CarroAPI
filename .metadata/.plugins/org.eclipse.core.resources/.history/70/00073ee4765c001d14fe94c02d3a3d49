@@ -1,0 +1,90 @@
+package br.com.fiap.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import br.com.fiap.factory.ConnectionFactory;
+import br.com.fiap.to.CarroNumSerieTO;
+import br.com.fiap.to.CarroUsuarioTO;
+
+public class CarroNumSerieDAO {
+	
+	private Connection con = null;
+
+	public CarroNumSerieDAO() {
+		this.con = new ConnectionFactory().getConnection();
+	}
+	
+	public CarroNumSerieTO loginDAO(CarroNumSerieTO carroNumSerie) {
+
+		String sql = "SELECT CU.NR_SERIE, CU.DT_INICIO, CU.DT_FIM, CA.NM_MARCA, CA.NM_MODELO, CA.NR_PLACA,"
+				+ " CA.DT_FABRICACAO, EMP.NM_EMPRESA, INC.NR_PNEU_CALIBRAGEM, INC.DS_PNEU_VIDA_UTIL,"
+				+ " INC.DS_QUILOMETRAGEM, INC.DS_FREIO_VIDA_UTIL, INC.DT_ULT_MANUTENCAO,"
+				+ " MOT.DS_MOTOR_VIDA_UTIL, BAT.NR_BATERIA_CARGA, BAT.DS_BATERIA_VIDA_UTIL"
+				+ " FROM T_GS_CARRO_USUARIO CU INNER JOIN T_GS_CARRO CA ON(CU.ID_CARRO = CA.ID_CARRO)"
+				+ " INNER JOIN T_GS_EMPRESA EMP ON(CA.ID_EMPRESA = EMP.ID_EMPRESA)"
+				+ " INNER JOIN T_GS_INFO_CARRO INC ON(CA.ID_CARRO = INC.ID_CARRO)"
+				+ " INNER JOIN T_GS_MOTOR MOT ON(INC.ID_INFO_CARRO = MOT.ID_INFO_CARRO)"
+				+ " INNER JOIN T_GS_BATERIA BAT ON(INC.ID_INFO_CARRO = BAT.ID_INFO_CARRO) WHERE CU.NR_SERIE = ?";
+		
+		ArrayList<CarroNumSerieTO> resul = new ArrayList<CarroNumSerieTO>();
+		
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(sql);
+
+			ps.setString(1, carroNumSerie.getNrSerie());
+
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				carroNumSerie.setNrSerie(rs.getString(1));
+				
+				/// Transformando o LocalDate em String para mandar para o Banco de Dados
+				String aux = rs.getString(2);
+				String data = aux.substring(0, 4) + "-";
+				data += aux.substring(5, 7) + "-";
+				data += aux.substring(8, 10);
+				LocalDate dtInicio = LocalDate.parse(data);
+				carroNumSerie.setDtInicio(dtInicio);
+				
+				/// Transformando o LocalDate em String para mandar para o Banco de Dados
+				String aux = rs.getString(3);
+				String data = aux.substring(0, 4) + "-";
+				data += aux.substring(5, 7) + "-";
+				data += aux.substring(8, 10);
+				LocalDate dtFim = LocalDate.parse(data);
+				carroNumSerie.setDtFim(dtFim);
+				carroNumSerie.setNmMarca(rs.getString(0));
+				carroNumSerie.setNmModelo(rs.getString(5));
+				carroNumSerie.setNrPlaca(rs.getString(6));
+				carroNumSerie.setDtFabricacao(rs.getString(7));
+				carroNumSerie.setNmEmpresa(rs.getString(8));
+				carroNumSerie.setNrPneuCalibragem(rs.getInt(9));
+				carroNumSerie.setDsPneuVidaUtil(rs.getInt(10));
+				carroNumSerie.setDsSuspensaoVidaUtil(rs.getInt(11));
+				carroNumSerie.setDsQuilometragem(rs.getInt(12));
+				carroNumSerie.setDsFreioVidaUtil(rs.getInt(13));
+				carroNumSerie.setDsMotorVidaUtil(rs.getInt(14));
+				carroNumSerie.setNrBateriaBarga(rs.getInt(15));
+				carroNumSerie.setDsBateriaVidaUtil(rs.getInt(16));
+				resul.add(carroNumSerie);
+			}
+			
+			rs.close();
+			ps.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+}
